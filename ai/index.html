@@ -15,8 +15,8 @@
     </h1>
         <h2>Pages:
             &nbsp;&nbsp;&bull;&nbsp; <a href="../index.html">Intro</a>
-            &nbsp;&nbsp;&bull;&nbsp; <a href="../ai/index.html">AI</a>
             &nbsp;&nbsp;&bull;&nbsp; <a href="../about/index.html">About</a>
+            &nbsp;&nbsp;&bull;&nbsp; <a href="../ai/index.html">AI</a>
             &nbsp;&nbsp;&bull;&nbsp; <a href="../contact/index.html">Contact</a>
         </h2>
     </header>
@@ -54,30 +54,30 @@
         <section>
             <h3>Building Control</h3><p>The systems in the section are <a href="https://github.com/pnnl/neuromancer/blob/master/src/neuromancer/psl/building_envelope.py">building simulators</a> from the Neuromancer PSL module which I have made open-source contributions to. The task is constrained energy management, controlling the boiler temperature and airflow to each zone. The dashed red lines represent the thermal constraint band, and the individual zone temperatures are shown between them. The right-hand side of each figure shows the corresponding actions (temperature and airflow).
         </section>
-        <section style="display: flex; justify-content: space-around; align-items: start; width: 100%;">
-            <div style="text-align: center; width: 45%;" >
-                <img src="rf0-2.png" alt="" style="width: 700px; height: 350px;">
+        <section style="display: flex; flex-wrap: wrap; justify-content: space-around; align-items: flex-start;">
+            <div style="text-align: center; flex: 1 1 auto; padding: 10px;">
+                <img src="rf0-2.png" alt="" style="max-width: 100%; height: auto; width: 650px;">
                 <p>System: Reno_full, Controller: TQC</p>
             </div>
-            <div style="text-align: center; width: 45%;" >
-                <img src="ss0-2.png" alt="" style="width: 700px; height: 350px;">
+            <div style="text-align: center; flex: 1 1 auto; padding: 10px;">
+                <img src="ss0-2.png" alt="" style="max-width: 100%; height: auto; width: 650px;">
                 <p>System: Single Zone, Controller: TD3</p>
             </div>
         </section>
         <section>
             <h3>Other <a href="https://github.com/pnnl/neuromancer/blob/master/src/neuromancer/psl/nonautonomous.py">PSL Systems</a></h3>
-            <section style="display: flex; justify-content: space-around; align-items: start; width: 100%;">
-                <div style="text-align: center; width: 45%;" >
-                    <p>
-                    <p style="margin-top: 45px; margin-bottom: 60px;">
-                        TwoTank: the objective is to keep the tank heights at a single reference point, controlling the total water flow with a pump, and controlling the proportion of water that goes into each tank with a nozzle. The top tank drains into the bottom tank.
-                    </p>
-                    <img src="tt0-3.png" alt="TwoTank System" style="width: 700px; height: 350px;">
+            <section style="display: flex; flex-wrap: wrap; justify-content: space-around; align-items: flex-start;">
+                <div style="text-align: center; flex: 1 1 auto; padding: 10px; width: 650px;">
+                    <img src="tt0-3.png" alt="TwoTank System" style="width: 650px; height: 350px;">
                     <p>System: TwoTank, Controller: TQC</p>
+                    <p">
+                        TwoTank: the objective is to keep the tank heights at a single reference point, controlling the total water flow with a pump, and controlling the proportion of water that goes into each tank with a nozzle. The top tank drains into the bottom tank.</p>
                 </div>
-                <div style="text-align: center; width: 45%;">
+                <div style="text-align: center; flex: 1 1 500px; padding: 10px; width: 650px;">
+                    <img src="vp0-3.png" alt="Van der Pol Oscillator" style="width: 650px; height: 350px;">
+                    <p>System: Van der Pol, Controller: TQC</p>
                     <p>
-                        Van der Pol Oscillator: which is defined by a system of differential equations:
+                        Van der Pol Oscillator: defined by a system of differential equations:
                     </p>
                     <p>
                         dx₀/dt = x₁, &emsp;
@@ -86,61 +86,66 @@
                     <p>
                         Where the state is defined as x=(x₀, x₁), and the action u is a number between -5 and 5. The goal is to set the state to 0.
                     </p>
-                    <img src="vp0-3.png" alt="Van der Pol Oscillator" style="width: 700px; height: 350px;">
-                    <p>System: Van der Pol, Controller: TQC</p>
                 </div>
             </section>
         </section>
         <section>
             <h3>Gymnasium Environments with Defaults</h3>
-            <p>The remaining 5 control systems are <a href="https://gymnasium.farama.org/">Farama Gymnasium environments</a>.</p>
-            <p>The following 3 were started from pre-optimized default parameters from RL Zoo 3.</p>
+            <p>The remaining five control systems are <a href="https://gymnasium.farama.org/">Farama Gymnasium environments</a>.</p>
+            <p>The following three were started from pre-optimized default parameters from RL Zoo 3.</p>
         </section>
-        <section style="display: flex; justify-content: space-around; align-items: start; width: 100%;">
-            <div style="text-align: center; width: 45%;" >
+        <section style="display: flex; flex-wrap: wrap; justify-content: space-around; align-items: flex-start;">
+            <div style="text-align: center; flex: 1 1 100px; padding: 10px;">
                 <img src="walker_tqc-3.gif" alt="Walker TQC Animation">
                 <p>System: BipedalWalker-v3, Controller: TQC</p>
             </div>
-            <div style="text-align: center; width: 45%;" >
+            <div style="text-align: center; flex: 1 1 100px; padding: 10px;">
                 <img src="lunar_tqc-4.gif" alt="Lunar TQC Animation">
                 <p>System: LunarLanderContinuous-v2, Controller: TQC</p>
             </div>
-            <div style="text-align: center; width: 45%;" >
+            <div style="text-align: center; flex: 1 1 100px; padding: 10px;">
                 <img src="car_tqc-4.gif" alt="Car TQC Animation">
                 <p>System: MountainCarContinuous-v0, Controller: TQC</p>
             </div>
         </section>
         <section>
-            The remaining two systems were modified from the base Farama gymnasium environments to have continuous action space. Acrobot (left) was also modified to not terminate after hitting the ceiling, which changes the goal to remain above the ceiling as much as possible, rather than to touch it as soon as possible, which significantly changes the optimal control task. Due to these differences, the default parameters for Lunar Lander were used to seed the search.
+            <p>The remaining two systems were modified from the base Farama gymnasium environments to have continuous action space. Acrobot (left) was also modified to not terminate after hitting the ceiling, which changes the goal to remain above the ceiling as much as possible, rather than to touch it as soon as possible. This significantly changes the optimal control task. Due to these differences, the default parameters for Lunar Lander were used to seed the search.</p>
         </section>
-        <section style="display: flex; justify-content: space-around; align-items: start; width: 100%;">
-            <div style="text-align: center; width: 45%;" >
+        <section style="display: flex; flex-wrap: wrap; justify-content: space-around; align-items: flex-start;">
+            <div style="text-align: center; flex: 1 1 auto; padding: 1px;">
                 <img src="acro_tqc-10k-dev2-5.gif" alt="Acro TQC Animation">
                 <p>System: Acrobot Continuous, Controller: TQC</p>
             </div>
-            <div style="text-align: center; width: 45%;" >
+            <div style="text-align: center; flex: 1 1 auto; padding: 1px;">
                 <img src="pendulum_sac-5.gif" alt="Pendulum SAC Animation">
                 <p>System: Pendulum Continuous, Controller: SAC</p>
             </div>
         </section>
+<!--         <section style="display: flex; justify-content: space-around; align-items: start; width: 100%;">
+            <div style="text-align: center; width: 45%; flex: 1 1 10px;" >
+            </div>
+            <div style="text-align: center; width: 45%; flex: 1 1 10px;" >
+            </div>
+        </section> -->
         <section>
             <h3><a href="https://github.com/Seth1Briney/maze-runner">Maze Runner</a></h3> <p> The link provided shows the code to a maze-running AI I wrote just before starting my MCS, using a modified Q-learning algorithm which decreases the probability of re-visiting states recently visited. This modification effectively prevents it from getting stuck at dead-ends, allowing it to complete randomized mazes (assuming the given randomized maze is possible).</p>
+        </section>
+        <hr>
+        <section>
+            <h2>Supervised Deep Learning</h2>
         </section>
         <section>
             <h3>Sick Plant Identification</h3> <p>From the D4-Computer Vision Kaggle Competition I took part in, performing all tuning on a single 3090RTX GPU. I predicted whether a plant is sick to 96.5% accuracy with a single submission. Currently Gretta Buttelmann holds first place in the leaderboard with 96.7% accuracy, with four submissions. I do not plan to submit more entries since there is no prize for this competition, and I feel I've already gotten what I wanted out of it. The architecture I used was a CNN I wrote from scratch, which uses summary-statistics pooling as a first layer which is cached to files, effectively reducing the size of the data by a factor of 5/(60*40)=0.002, and significantly speeding up training. It uses skip connections and a number of regularization techniques. I augmented the image data with rotations, since if and only if a leaf is sick, then any rotations of the leaf will also be sick. I will probably open-source this soon, so keep an eye on my GitHub if you're interested.
         </section>
-        <section style="display: flex; justify-content: space-around; align-items: start; width: 100%;">
-            <div style="text-align: center; width: 45%;" >
+        <section style="display: flex; flex-wrap: wrap; justify-content: space-around; align-items: flex-start;">
+            <div style="text-align: center; flex: 1 1 auto; padding: 1px; width: 600px">
                 <img src="0022_0107-original.JPG" alt="">
                 <p>Original image of a sick leaf. </p>
             </div>
-            <div style="text-align: center; width: 45%;" >
+            <div style="text-align: center; flex: 1 1 auto; padding: 1px; width: 600px">
                 <img src="0022_0107.png" alt="">
-                <p>The columns represent each channel of the output of the summary-statistic pooling layer. From left to right, this visualizes the: mean, median, minimum, maximum, and standard deviation of each color of 40x60 regions of the original image. Each row is a different random rotation of the leaf, constrained by increasing maximum rotation angles.
+                <p>The columns represent each channel of the output of the summary-statistic pooling layer. From left to right, this visualizes the: mean, median, minimum, maximum, and standard deviation of each color of 40x60 regions of the original image. Each row is a different random rotation of the leaf, constrained by increasing maximum rotation angles.</p>
             </div>
-        </section>
-        <section>
-            <h2>Supervised Deep Learning</h2>
         </section>
         <section>
             <h3>Load Forecasting</h3> <p>Some graphics produced in my master's project, which was grant-funded and part of my Research Assistantship at WWU. The task was time sequence load forecasting in smart buildings, and involved several transfer learning experiments. I compared several deep learning architectures including 2 transformer models, one of which I wrote using <a href="https://pytorch.org/docs/stable/generated/torch.nn.MultiheadAttention.html">the MultiheadAttention</a> module from Pytorch, the other being the <a href="https://huggingface.co/docs/transformers/model_doc/autoformer"> Autoformer</a> from HuggingFace. In addition to the transformer, models I tried various MLP architectures with skip connections and batch/layer normalization, a convolutional neural network I implemented in Pytorch which was inspired by ResNet, Pytorch's LSTM class (this actually ended up generalizing better than the others in small data scenarios, though it didn't perform the best in development), and various hybrid ensemble models. I simulated all data in EnergyPlus (with the expert help of Sen Huang) of which I did some work in modifying the actuators and outputs of the simulation via the configuration files, and we utilized 6 different climate/building combos, exploring transfer learning between climates. This was a collaboration with the EED of PNNL. I did most of the coding, but I had plenty of guidance from my advisor, and the domain expert collaborators.</p>
@@ -178,21 +183,24 @@
     </main>
     <hr>
     <footer>
-        <section style="display: flex; justify-content: space-around;" style="width: 100px; height: 100px;">
-            <div style="text-align: center;">
+<!-- <section style="display: flex; flex-wrap: wrap; justify-content: space-around;">
+    <div style="text-align: center; flex: 1 1 300px; max-width: 33%;"> -->
+        <section style="display: flex; flex-wrap: wrap; justify-content: space-around; align-items: flex-start;">
+            <div style="text-align: center; flex: 1 1 250px; padding: 10px;">
                 <img src="../Gmail-Logo.png" alt="Gmail Logo">
                 <p>SethLBriney@gmail.com</p>
             </div>
-            <div style="text-align: center;">
+            <div style="text-align: center; flex: 1 1 250px; padding: 10px;">
                 <img src="../linkedin-logo-linkedin-logo-transparent-linkedin-icon-transparent-free-free-png.webp" alt="LinkedIn Logo">
                 <p><a href="https://www.linkedin.com/in/sethlbriney">https://www.linkedin.com/in/sethlbriney</a></p>
             </div>
-            <div style="text-align: center;">
+            <div style="text-align: center; flex: 1 1 250px; padding: 10px;">
                 <img src="../github-logo-transparent-free.png" alt="GitHub Logo">
                 <p><a href="https://github.com/seth1briney">https://github.com/seth1briney</a></p>
             </div>
         </section>
     </footer>
+
     <hr>
 </body>
 </html>

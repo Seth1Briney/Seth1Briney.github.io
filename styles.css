@@ -11,6 +11,18 @@
         --link-color: #80b3ff;
     }
 }
+/*@media (max-width: 600px) {
+    div {
+        max-width: 100%;
+    }
+}
+*/
+@media (max-width: 800px) {
+    div {
+        flex-basis: 100%;  /* Forces each div to take the full width of the container */
+        max-width: 100%;   /* Ensures divs do not exceed the width of the container */
+    }
+}
 
 body {
     background-color: var(--background-color);
